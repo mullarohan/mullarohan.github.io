@@ -44,6 +44,7 @@
     </script>
 
     <style>
+        /* Simplified CSS - Only essential variables and complex animations */
         :root {
             --bg-base: #070b14;
             --panel: rgba(12, 20, 38, 0.72);
@@ -63,6 +64,13 @@
             --hero-grad-a: rgba(18, 29, 52, 0.9);
             --hero-grad-b: rgba(10, 18, 34, 0.55);
             --shadow: 0 14px 36px rgba(1, 7, 20, 0.45);
+
+            /* Section Gradients */
+            --bg-welcome: linear-gradient(145deg, rgba(15, 34, 62, 0.55), rgba(5, 16, 32, 0.6));
+            --bg-about: linear-gradient(145deg, rgba(10, 48, 43, 0.5), rgba(8, 28, 30, 0.62));
+            --bg-skills: linear-gradient(145deg, rgba(50, 27, 62, 0.5), rgba(22, 18, 42, 0.62));
+            --bg-projects: linear-gradient(145deg, rgba(58, 29, 22, 0.5), rgba(26, 14, 16, 0.62));
+            --bg-profiles: linear-gradient(145deg, rgba(24, 38, 66, 0.52), rgba(10, 16, 32, 0.62));
         }
 
         body[data-theme="light"] {
@@ -84,6 +92,13 @@
             --hero-grad-a: rgba(255, 255, 255, 0.9);
             --hero-grad-b: rgba(230, 240, 255, 0.82);
             --shadow: 0 12px 28px rgba(21, 40, 74, 0.12);
+
+            /* Section Gradients Light */
+            --bg-welcome: linear-gradient(145deg, rgba(212, 231, 255, 0.72), rgba(227, 242, 255, 0.74));
+            --bg-about: linear-gradient(145deg, rgba(208, 246, 233, 0.75), rgba(224, 248, 240, 0.72));
+            --bg-skills: linear-gradient(145deg, rgba(236, 223, 255, 0.72), rgba(244, 234, 255, 0.72));
+            --bg-projects: linear-gradient(145deg, rgba(255, 231, 218, 0.74), rgba(255, 240, 232, 0.74));
+            --bg-profiles: linear-gradient(145deg, rgba(223, 235, 255, 0.74), rgba(237, 245, 255, 0.74));
         }
 
         body {
@@ -94,55 +109,6 @@
             background-attachment: fixed;
         }
 
-        /* Section Background Overlays */
-        .sec-overlay {
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            opacity: 0.95;
-        }
-
-        #welcome .sec-overlay {
-            background: linear-gradient(145deg, rgba(15, 34, 62, 0.55), rgba(5, 16, 32, 0.6));
-        }
-
-        #about .sec-overlay {
-            background: linear-gradient(145deg, rgba(10, 48, 43, 0.5), rgba(8, 28, 30, 0.62));
-        }
-
-        #skills .sec-overlay {
-            background: linear-gradient(145deg, rgba(50, 27, 62, 0.5), rgba(22, 18, 42, 0.62));
-        }
-
-        #projects .sec-overlay {
-            background: linear-gradient(145deg, rgba(58, 29, 22, 0.5), rgba(26, 14, 16, 0.62));
-        }
-
-        #profiles .sec-overlay {
-            background: linear-gradient(145deg, rgba(24, 38, 66, 0.52), rgba(10, 16, 32, 0.62));
-        }
-
-        body[data-theme="light"] #welcome .sec-overlay {
-            background: linear-gradient(145deg, rgba(212, 231, 255, 0.72), rgba(227, 242, 255, 0.74));
-        }
-
-        body[data-theme="light"] #about .sec-overlay {
-            background: linear-gradient(145deg, rgba(208, 246, 233, 0.75), rgba(224, 248, 240, 0.72));
-        }
-
-        body[data-theme="light"] #skills .sec-overlay {
-            background: linear-gradient(145deg, rgba(236, 223, 255, 0.72), rgba(244, 234, 255, 0.72));
-        }
-
-        body[data-theme="light"] #projects .sec-overlay {
-            background: linear-gradient(145deg, rgba(255, 231, 218, 0.74), rgba(255, 240, 232, 0.74));
-        }
-
-        body[data-theme="light"] #profiles .sec-overlay {
-            background: linear-gradient(145deg, rgba(223, 235, 255, 0.74), rgba(237, 245, 255, 0.74));
-        }
-
-        /* Custom Hover Effects & Active States */
         .nav-link.active {
             color: var(--text-main);
             border-color: rgba(22, 242, 179, 0.35);
@@ -160,7 +126,6 @@
             transform: translateY(0);
         }
 
-        /* Glowing Orb in About Section */
         .about-orb {
             position: absolute;
             width: 420px;
@@ -215,7 +180,7 @@
     <main>
         <section id="welcome"
             class="relative flex items-center justify-center pt-24 px-4 sm:px-6 pb-14 min-h-screen overflow-hidden isolate">
-            <div class="sec-overlay"></div>
+            <div class="absolute inset-0 -z-10 opacity-95" style="background: var(--bg-welcome);"></div>
             <div class="w-full max-w-[1120px] mx-auto fade-in-section">
                 <article class="p-6 md:p-12 border border-borderBase rounded-2xl shadow-custom max-w-[1020px] mx-auto"
                     style="background: linear-gradient(155deg, var(--hero-grad-a), var(--hero-grad-b));">
@@ -227,15 +192,36 @@
                     <p class="text-textSoft leading-relaxed text-base sm:text-lg max-w-[760px]">I design clean,
                         practical software solutions and enjoy turning complex logic into reliable products through
                         code.</p>
-                    <p class="mt-6 text-accent font-mono text-sm sm:text-[0.94rem]">$ Building systems with precision,
-                        structure, and purpose.</p>
+                    <p class="mt-4 mb-8 text-accent font-mono text-sm sm:text-[0.94rem]">$ Building systems with
+                        precision, structure, and purpose.</p>
+
+                    <!-- <a href="#"
+                        class="inline-flex items-center gap-2 px-6 py-3 font-mono text-sm font-bold text-[#050a13] bg-accent rounded-lg transition-all hover:bg-[#3da2ff] hover:-translate-y-1 shadow-[0_4px_14px_rgba(22,242,179,0.3)] hover:shadow-[0_6px_20px_rgba(61,162,255,0.4)]">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                            </path>
+                        </svg>
+                        Download Resume
+                    </a> -->
+                    <a href="#"
+                        class="inline-flex items-center gap-2 px-6 py-3 font-mono text-sm font-bold text-bgBase bg-accent rounded-lg transition-all duration-300 hover:bg-accentAlt hover:-translate-y-1 shadow-[0_8px_16px_var(--bg-grad-1)] hover:shadow-[0_12px_20px_var(--bg-grad-2)]">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                            </path>
+                        </svg>
+                        Download Resume
+                    </a>
                 </article>
             </div>
         </section>
 
         <section id="about"
             class="relative flex items-center justify-center pt-24 px-4 sm:px-6 pb-14 min-h-screen overflow-hidden isolate">
-            <div class="sec-overlay"></div>
+            <div class="absolute inset-0 -z-10 opacity-95" style="background: var(--bg-about);"></div>
             <div class="about-orb"></div>
             <div
                 class="w-full max-w-[1120px] mx-auto border border-borderBase rounded-2xl bg-panel shadow-custom p-6 md:p-10 fade-in-section transition-transform duration-300 hover:-translate-y-1 hover:border-[#16f2b355] hover:shadow-[0_18px_40px_rgba(5,18,26,0.5)]">
@@ -247,17 +233,30 @@
                     bring strong analytical thinking and a passion for solving complex problems through structured
                     reasoning.</p>
 
+                <a href="#"
+                    class="inline-flex items-center gap-2 mt-6 px-5 py-2.5 font-mono text-sm text-accent border border-[#16f2b359] bg-[#16f2b30a] rounded-lg transition-all hover:bg-[#16f2b324] hover:text-[#e9fff7] hover:border-[#16f2b3bd]">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                    View Full Resume
+                </a>
+
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-                    <div
-                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b36b] hover:-translate-y-1 hover:shadow-[0_10px_28px_rgba(6,12,24,0.62)] cursor-pointer">
-                        <h3 class="font-mono text-lg text-accentAlt mb-4">Academic Track</h3>
+                    <article
+                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group flex flex-col">
+                        <h3 class="font-mono text-lg text-accentAlt mb-4 group-hover:text-accent transition-colors">
+                            Academic Track</h3>
                         <p class="text-textSoft mb-2">Program: B.Sc. in Computer Science and Engineering</p>
                         <p class="text-textSoft mb-2">University: Rabindra Maitree University</p>
                         <p class="text-textSoft font-bold text-textMain">Expected Graduation: 2026</p>
-                    </div>
-                    <div
-                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b36b] hover:-translate-y-1 hover:shadow-[0_10px_28px_rgba(6,12,24,0.62)] cursor-pointer">
-                        <h3 class="font-mono text-lg text-accentAlt mb-4">Core Approach</h3>
+                    </article>
+
+                    <article
+                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group flex flex-col">
+                        <h3 class="font-mono text-lg text-accentAlt mb-4 group-hover:text-accent transition-colors">Core
+                            Approach</h3>
                         <div class="flex flex-wrap gap-2">
                             <span
                                 class="border border-[#3da2ff66] rounded-full text-[#c6dcff] px-4 py-1.5 text-sm bg-[#3da2ff0a]">Analytical
@@ -269,14 +268,14 @@
                                 class="border border-[#3da2ff66] rounded-full text-[#c6dcff] px-4 py-1.5 text-sm bg-[#3da2ff0a]">Practical
                                 Engineering</span>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <section id="skills"
             class="relative flex items-center justify-center pt-24 px-4 sm:px-6 pb-14 min-h-screen overflow-hidden isolate">
-            <div class="sec-overlay"></div>
+            <div class="absolute inset-0 -z-10 opacity-95" style="background: var(--bg-skills);"></div>
             <div
                 class="w-full max-w-[1120px] mx-auto border border-borderBase rounded-2xl bg-panel shadow-custom p-6 md:p-10 fade-in-section">
                 <p class="font-mono text-[0.88rem] text-accent tracking-widest uppercase mb-4">Skills</p>
@@ -284,8 +283,9 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <article
-                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b36b] hover:-translate-y-1 hover:shadow-[0_10px_28px_rgba(6,12,24,0.62)] cursor-pointer">
-                        <h3 class="font-mono text-lg text-accentAlt mb-4">Programming Languages</h3>
+                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group flex flex-col">
+                        <h3 class="font-mono text-lg text-accentAlt mb-4 group-hover:text-accent transition-colors">
+                            Programming Languages</h3>
                         <ul class="flex flex-col gap-3 list-none text-textSoft">
                             <li class="flex items-center"><span class="text-accent font-mono mr-2">>_</span> C</li>
                             <li class="flex items-center"><span class="text-accent font-mono mr-2">>_</span> C++</li>
@@ -295,8 +295,9 @@
                     </article>
 
                     <article
-                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b36b] hover:-translate-y-1 hover:shadow-[0_10px_28px_rgba(6,12,24,0.62)]">
-                        <h3 class="font-mono text-lg text-accentAlt mb-4">Machine Learning</h3>
+                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group flex flex-col">
+                        <h3 class="font-mono text-lg text-accentAlt mb-4 group-hover:text-accent transition-colors">
+                            Machine Learning</h3>
                         <ul class="flex flex-col gap-3 list-none text-textSoft">
                             <li class="flex items-center"><span class="text-accent font-mono mr-2">>_</span>
                                 Scikit-learn</li>
@@ -308,8 +309,9 @@
                     </article>
 
                     <article
-                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b36b] hover:-translate-y-1 hover:shadow-[0_10px_28px_rgba(6,12,24,0.62)]">
-                        <h3 class="font-mono text-lg text-accentAlt mb-4">Web Development</h3>
+                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group flex flex-col">
+                        <h3 class="font-mono text-lg text-accentAlt mb-4 group-hover:text-accent transition-colors">Web
+                            Development</h3>
                         <ul class="flex flex-col gap-3 list-none text-textSoft">
                             <li class="flex items-center"><span class="text-accent font-mono mr-2">>_</span> HTML</li>
                             <li class="flex items-center"><span class="text-accent font-mono mr-2">>_</span> CSS</li>
@@ -324,27 +326,25 @@
                 <div
                     class="mt-8 p-4 rounded-xl border border-[#16f2b352] bg-[#16f2b314] flex items-center justify-center gap-3">
                     <span class="text-2xl">🏆</span>
-                    <p class="text-accentAlt font-medium">Solved 500+ problems in
-                        various Online Judges.</p>
+                    <p class="text-accentAlt font-medium">Solved 500+ problems in various Online Judges.</p>
                 </div>
             </div>
         </section>
 
         <section id="projects"
             class="relative flex items-center justify-center pt-24 px-4 sm:px-6 pb-14 min-h-screen overflow-hidden isolate">
-            <div class="sec-overlay"></div>
+            <div class="absolute inset-0 -z-10 opacity-95" style="background: var(--bg-projects);"></div>
             <div
                 class="w-full max-w-[1120px] mx-auto border border-borderBase rounded-2xl bg-panel shadow-custom p-6 md:p-10 fade-in-section">
                 <p class="font-mono text-[0.88rem] text-accent tracking-widest uppercase mb-4">Projects</p>
                 <h2 class="font-mono text-2xl sm:text-3xl md:text-4xl mb-6 font-bold text-textMain">Selected Work</h2>
-                <h2 class="font-mono text-xl sm:text-2xl md:text-3xl mb-6 font-bold text-textMain">Machine Learning</h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
                     <article
-                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b36b] hover:-translate-y-1 hover:shadow-[0_10px_28px_rgba(6,12,24,0.62)] flex flex-col h-full">
-                        <h3 class="font-mono text-lg text-accentAlt mb-4">Social Network Ads (ML - Classification)</h3>
-                        <div class="text-textSoft flex-grow space-y-2 mb-6">
+                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group flex flex-col h-full">
+                        <h3 class="font-mono text-lg text-accentAlt mb-4 group-hover:text-accent transition-colors">
+                            Social Network Ads (ML)</h3>
+                        <div class="text-textSoft flex-grow space-y-2 mb-6 text-sm">
                             <p>• Implemented end-to-end ML pipeline.</p>
                             <p>• Built classification model using Python and scikit-learn.</p>
                             <p>• Performed data preprocessing and model evaluation.</p>
@@ -353,15 +353,15 @@
                         <div class="flex gap-3 mt-auto">
                             <a class="text-textMain border border-[#3da2ff85] rounded-lg text-sm px-4 py-2 bg-[#3da2ff1a] transition-all hover:border-[#16f2b3bd] hover:bg-[#16f2b324] hover:text-[#e9fff7] w-full text-center font-medium"
                                 href="https://github.com/mullarohan/Classification_Social_Network_Ads"
-                                target="_blank">Code /
-                                GitLink</a>
+                                target="_blank">Code / GitLink</a>
                         </div>
                     </article>
 
                     <article
-                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b36b] hover:-translate-y-1 hover:shadow-[0_10px_28px_rgba(6,12,24,0.62)] flex flex-col h-full">
-                        <h3 class="font-mono text-lg text-accentAlt mb-4">Diabetes Prediction App (ML)</h3>
-                        <div class="text-textSoft flex-grow space-y-2 mb-6">
+                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group flex flex-col h-full">
+                        <h3 class="font-mono text-lg text-accentAlt mb-4 group-hover:text-accent transition-colors">
+                            Diabetes Prediction App</h3>
+                        <div class="text-textSoft flex-grow space-y-2 mb-6 text-sm">
                             <p>• Implemented end-to-end ML pipeline.</p>
                             <p>• Built classification model using Python and scikit-learn.</p>
                             <p>• Performed data preprocessing and model evaluation.</p>
@@ -377,16 +377,14 @@
                     </article>
 
                     <article
-                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b36b] hover:-translate-y-1 hover:shadow-[0_10px_28px_rgba(6,12,24,0.62)] flex flex-col h-full">
-                        <h3 class="font-mono text-lg text-accentAlt mb-4">CLI Banking System</h3>
+                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group flex flex-col h-full">
+                        <h3 class="font-mono text-lg text-accentAlt mb-4 group-hover:text-accent transition-colors">CLI
+                            Banking System</h3>
                         <div class="text-textSoft flex-grow mb-6">
-                            <p class="py-1 text-sm">
-                                <span class="text-accentAlt">Tech:</span> Python
-                            </p>
-                            <div class="text-textSoft flex-grow space-y-2 mb-6">
+                            <p class="py-1 text-sm"><span class="text-accentAlt">Tech:</span> Python</p>
+                            <div class="text-textSoft space-y-2 mt-3 text-sm">
                                 <p>• A command-line based banking system built entirely in Python.</p>
-                                <p>• Implemented core banking functionalities like account management and
-                                    transactions.</p>
+                                <p>• Implemented core functionalities like account management.</p>
                                 <p>• Uses CSV for data storage and handling.</p>
                             </div>
                         </div>
@@ -395,14 +393,13 @@
                                 href="https://github.com/mullarohan/PyBank" target="_blank">Code / GitLink</a>
                         </div>
                     </article>
-
                 </div>
             </div>
         </section>
 
         <section id="profiles"
             class="relative flex items-center justify-center pt-24 px-4 sm:px-6 pb-14 min-h-screen overflow-hidden isolate">
-            <div class="sec-overlay"></div>
+            <div class="absolute inset-0 -z-10 opacity-95" style="background: var(--bg-profiles);"></div>
             <div
                 class="w-full max-w-[1120px] mx-auto border border-borderBase rounded-2xl bg-panel shadow-custom p-6 md:p-10 fade-in-section">
                 <p class="font-mono text-[0.88rem] text-accent tracking-widest uppercase mb-4">Online Judges &amp;
@@ -410,52 +407,54 @@
                 <h2 class="font-mono text-2xl sm:text-3xl md:text-4xl mb-6 font-bold text-textMain">Connect And Verify
                     My Work</h2>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
                     <a href="https://www.linkedin.com/in/mullarohan/" target="_blank" rel="noreferrer noopener"
-                        class="block border border-borderBase rounded-xl bg-cardBg p-5 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group">
+                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group flex flex-col">
                         <h3 class="font-mono text-lg text-accentAlt mb-1 group-hover:text-accent transition-colors">
                             Linkedin</h3>
-                        <p class="text-[#d0e2ff] text-sm">linkedin.com/in/mullarohan/</p>
+                        <p class="text-[#d0e2ff] text-sm mt-auto">linkedin.com/in/mullarohan/</p>
                     </a>
+
                     <a href="https://www.facebook.com/MullaRohan/" target="_blank" rel="noreferrer noopener"
-                        class="block border border-borderBase rounded-xl bg-cardBg p-5 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group">
+                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group flex flex-col">
                         <h3 class="font-mono text-lg text-accentAlt mb-1 group-hover:text-accent transition-colors">
                             Facebook</h3>
-                        <p class="text-[#d0e2ff] text-sm">facebook.com/MullaRohan</p>
+                        <p class="text-[#d0e2ff] text-sm mt-auto">facebook.com/MullaRohan</p>
                     </a>
+
                     <a href="https://github.com/MullaRohan" target="_blank" rel="noreferrer noopener"
-                        class="block border border-borderBase rounded-xl bg-cardBg p-5 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group">
+                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group flex flex-col">
                         <h3 class="font-mono text-lg text-accentAlt mb-1 group-hover:text-accent transition-colors">[GH]
                             GitHub</h3>
-                        <p class="text-[#d0e2ff] text-sm">github.com/MullaRohan</p>
+                        <p class="text-[#d0e2ff] text-sm mt-auto">github.com/MullaRohan</p>
                     </a>
 
                     <a href="https://codeforces.com/profile/MullaRohan" target="_blank" rel="noreferrer noopener"
-                        class="block border border-borderBase rounded-xl bg-cardBg p-5 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group">
+                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group flex flex-col">
                         <h3 class="font-mono text-lg text-accentAlt mb-1 group-hover:text-accent transition-colors">[CF]
                             Codeforces</h3>
-                        <p class="text-[#d0e2ff] text-sm">codeforces.com/profile/MullaRohan</p>
+                        <p class="text-[#d0e2ff] text-sm mt-auto">codeforces.com/profile/MullaRohan</p>
                     </a>
 
                     <a href="https://www.codechef.com/users/mullarohan" target="_blank" rel="noreferrer noopener"
-                        class="block border border-borderBase rounded-xl bg-cardBg p-5 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group">
+                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group flex flex-col">
                         <h3 class="font-mono text-lg text-accentAlt mb-1 group-hover:text-accent transition-colors">[CC]
                             CodeChef</h3>
-                        <p class="text-[#d0e2ff] text-sm">codechef.com/users/mullarohan</p>
+                        <p class="text-[#d0e2ff] text-sm mt-auto">codechef.com/users/mullarohan</p>
                     </a>
 
                     <a href="https://wakatime.com/@mullarohan" target="_blank" rel="noreferrer noopener"
-                        class="block border border-borderBase rounded-xl bg-cardBg p-5 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group">
+                        class="border border-borderBase rounded-xl bg-cardBg p-6 transition-all duration-300 hover:border-[#16f2b380] hover:-translate-y-1 hover:bg-[#16f2b30a] group flex flex-col">
                         <h3 class="font-mono text-lg text-accentAlt mb-1 group-hover:text-accent transition-colors">[WT]
                             WakaTime</h3>
-                        <p class="text-[#d0e2ff] text-sm">wakatime.com/@mullarohan</p>
+                        <p class="text-[#d0e2ff] text-sm mt-auto">wakatime.com/@mullarohan</p>
                     </a>
                 </div>
 
                 <div
                     class="pt-6 border-t border-borderBase bg-[#0a122240] -mx-6 md:-mx-10 -mb-6 md:-mb-10 px-6 md:px-10 pb-6 md:pb-10 rounded-b-2xl">
                     <h3 class="font-mono text-lg text-accent mb-4">Contact Info</h3>
-                    <div class="grid gap-3 md:flex md:gap-8">
+                    <div class="grid gap-3 md:flex md:gap-8 flex-wrap">
                         <p class="text-textSoft flex items-center gap-2"><span class="text-xl">✉</span>
                             rohanmulla.cs@gmail.com</p>
                         <p class="text-textSoft flex items-center gap-2"><span class="text-xl">✉</span>
@@ -488,11 +487,12 @@
             ⚡
         </button>
     </div>
+
     <footer class="bg-panelSolid border-t border-borderBase py-6 text-center text-textSoft">
         <p>&copy; 2026 Mulla Rohan. All rights reserved.</p>
     </footer>
+
     <script>
-        // Theme Toggling Logic
         const themeToggle = document.getElementById("theme-toggle");
         const themeIcon = document.getElementById("theme-icon");
         const storageKey = "portfolio-theme";
@@ -511,7 +511,6 @@
             setTheme(currentTheme === "dark" ? "light" : "dark");
         });
 
-        // Quick Menu Logic
         const quickMenuToggle = document.getElementById("quick-menu-toggle");
         const quickMenuPanel = document.getElementById("quick-menu-panel");
 
@@ -525,23 +524,15 @@
             });
         });
 
-        // Intersection Observer for Scroll Animations & Navbar Active State
         const sections = document.querySelectorAll("section");
         const navLinks = document.querySelectorAll(".nav-link");
 
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.3 // Trigger when 30% of section is visible
-        };
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.3 };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    // Add fade-in animation class
                     entry.target.querySelector('.fade-in-section')?.classList.add('is-visible');
-
-                    // Update Navbar Active Link
                     const currentId = entry.target.id;
                     navLinks.forEach((link) => {
                         link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`);
@@ -550,9 +541,7 @@
             });
         }, observerOptions);
 
-        sections.forEach((section) => {
-            observer.observe(section);
-        });
+        sections.forEach((section) => observer.observe(section));
     </script>
 </body>
 
